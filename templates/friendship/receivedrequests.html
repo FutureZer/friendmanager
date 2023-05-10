@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %} FriendManager {% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <main>
+            <div class="container">
+                {% if message != '' %}
+                    <div class="alert alert-primary mt-4" role="alert">
+                        {{ message }}
+                    </div>
+                {% endif %}
+                {% for form in forms %}
+                    <form class="row g-2" method="post">
+                        {% csrf_token %}
+                        <div class="col-auto">
+                            {{ form.username }}
+                        </div>
+                        <div class="col-auto">
+                            {{ form.email }}
+                        </div>
+                        <div class="col-auto">
+                            <input type="submit" name="accept" value="Accept" class="btn btn-success mb-3">
+                        </div>
+                        <div class="col-auto">
+                            <input type="submit" name="decline" value="Decline" class="btn btn-danger mb-3">
+                        </div>
+                    </form>
+                {% endfor %}
+            </div>
+        </main>
+    {% endif %}
+{% endblock %}

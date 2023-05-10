@@ -1,0 +1,23 @@
+{% block header %}
+    <div class="container">
+        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="{% url 'home' %}" class="nav-link px-2 link-secondary">Home</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'myrequests' %}" class="nav-link px-2 link-dark">My requests</a></li>
+                    <li><a href="{% url 'received'%}" class="nav-link px-2 link-dark">Received requests</a></li>
+                    <li><a href="{% url 'friends' %}" class="nav-link px-2 link-dark">My friends</a></li>
+                {% endif %}
+            </ul>
+
+            <div class="col-md-3 text-end">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'logout' %}" type="button" class="btn btn-outline-primary me-2">Log Out</a>
+                {% else %}
+                    <a href="{% url 'login' %}" type="button" class="btn btn-outline-primary me-2">Login</a>
+                    <a href="{% url 'register' %}" type="button" class="btn btn-primary">Sign-up</a>
+                {% endif %}
+            </div>
+        </header>
+    </div>
+{% endblock %}
